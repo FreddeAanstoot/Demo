@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Demo
+namespace Demo.Menu
 {
-    public partial class MainPage : ContentPage
+    public partial class MenuPage : ContentPage
     {
-        public MainPage()
+        public MenuPage()
         {
             InitializeComponent();
         }
