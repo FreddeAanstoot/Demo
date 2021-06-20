@@ -1,4 +1,5 @@
 ﻿using System;
+using Demo.Menu;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,9 @@ namespace Demo
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            //Basic navigation
+            //TODO: Write a navigation service
+            MainPage = new NavigationPage(new MenuPage());
         }
 
         protected override void OnStart()
