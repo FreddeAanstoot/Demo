@@ -4,5 +4,12 @@
              x:Class="Demo.App">
     <Application.Resources>
 
+        <Color x:Key="DarkGrey">#FF262626</Color>
+        <Color x:Key="VeryLightGrey">#f5f6f8</Color>
+        <Color x:Key="LightBlue">#FF2196F3</Color>
+
+
+        <x:String x:Key="IconSearch">&#xf002;</x:String>
+
     </Application.Resources>
 </Application>

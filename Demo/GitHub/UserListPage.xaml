@@ -8,7 +8,7 @@
              ios:Page.UseSafeArea="True"
 	         xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             BackgroundColor="#f5f6f8"
+             BackgroundColor="{StaticResource VeryLightGrey}"
              Title="Search for GitHub Users">
 
     <StackLayout>
@@ -39,19 +39,19 @@
 
                         <StackLayout VerticalOptions="CenterAndExpand">
 
-                            <Label Margin="10,0,10,0"
+                            <Label Margin="10,0"
                                    FontAttributes="Bold"
                                    FontSize="17"
                                    HorizontalOptions="CenterAndExpand"
                                    Text="{Binding NoResultHeaderText}"
-                                   TextColor="#262626" />
+                                   TextColor="{StaticResource DarkGrey}" />
 
                             <Label Margin="20,10,20,0"
                                    FontSize="12"
                                    HorizontalOptions="Center"
                                    HorizontalTextAlignment="Center"
                                    Text="{Binding NoResultText}"
-                                   TextColor="#262626" />
+                                   TextColor="{StaticResource DarkGrey}" />
 
                         </StackLayout>
 
@@ -86,17 +86,17 @@
                                     <Label FontAttributes="Bold"
                                            FontSize="17"
                                            VerticalOptions="Start"
-                                           TextColor="#262626"
+                                           TextColor="{StaticResource DarkGrey}"
                                            Text="{Binding Login}" />
 
                                     <Label FontSize="14"
                                            VerticalOptions="Start"
-                                           TextColor="#262626"
+                                           TextColor="{StaticResource DarkGrey}"
                                            Text="{Binding Type}" />
 
                                     <Label FontSize="14"
                                            VerticalOptions="Start"
-                                           TextColor="#262626"
+                                           TextColor="{StaticResource DarkGrey}"
                                            Text="{Binding ScoreText}" />
 
                                 </StackLayout>
