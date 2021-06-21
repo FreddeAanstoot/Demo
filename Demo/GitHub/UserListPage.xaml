@@ -6,9 +6,45 @@
              x:DataType="vm:UserListPageViewModel"
              Title="GitHub Users">
 
-    <StackLayout Margin="20">
+    <StackLayout>
 
-        <SearchBar Placeholder="Search GitHub users..." />
+        <Label Text="Search for GitHub users" />
+
+        <SearchBar x:Name="searchBar"
+                   Text="{Binding SearchText}"
+                   Placeholder="Name, username or email"
+                   SearchCommand="{Binding PerformSearch}"
+                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+
+        <Grid>
+
+            <CollectionView ItemsSource="{Binding Users}"
+                BackgroundColor="Transparent" >
+                        
+                <CollectionView.EmptyView>
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Label HorizontalOptions="Fill"
+                               HorizontalTextAlignment="Center"
+                               VerticalOptions="CenterAndExpand"
+                               Text="{Binding NoResultText}" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="vm:UserInfoViewModel">
+                        <Label Text="{Binding Login}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <ActivityIndicator IsRunning="{Binding ShowLoadingSpinner}"
+                HeightRequest="30"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="30"/>
+
+        </Grid>
 
     </StackLayout>
 
