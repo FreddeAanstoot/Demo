@@ -4,12 +4,15 @@ using Demo.Menu;
 using Demo.BaseClasses;
 using Microsoft.Extensions.DependencyInjection;
 using Xamarin.Forms;
+using Demo.Services;
 
 namespace Demo
 {
     public partial class App : Application
     {
         protected static IServiceProvider ServiceProvider { get; set; }
+
+        public static string GitHubUrl = "https://api.github.com";
 
         public App()
         {
@@ -30,6 +33,7 @@ namespace Demo
 
             //Core services
             services.AddSingleton<IGitHubService, GitHubService>();
+            services.AddSingleton<IAlertService>(provider => new AlertService(this));
 
             ServiceProvider = services.BuildServiceProvider();
         }
