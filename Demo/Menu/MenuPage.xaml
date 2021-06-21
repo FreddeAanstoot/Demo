@@ -8,9 +8,6 @@
              ios:Page.UseSafeArea="True"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#2196F3" >
-    <ContentPage.BindingContext>
-        <vm:MenuPageViewModel/>
-    </ContentPage.BindingContext>
 
     <StackLayout>
 

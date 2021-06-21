@@ -10,13 +10,11 @@ namespace Demo.Menu
     {
         public ICommand GitHubUsersCommand { get; }
 
-        public MenuPageViewModel()
+        public MenuPageViewModel(IGitHubService gitHubService)
         {
             GitHubUsersCommand = new Command(async () =>
             {
-                //Basic navigation
-                //TODO: Write a navigation service
-                var userListPageViewModel = new UserListPageViewModel();
+                var userListPageViewModel = new UserListPageViewModel(gitHubService);
 
                 var userListPage = new UserListPage();
 
