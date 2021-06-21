@@ -92,9 +92,9 @@ namespace Demo.GitHub
             Users = new ExtendedObservableCollection<UserInfoViewModel>();
         }
 
+        //TODO: Show detailed page for a user
         private async Task ShowUser(UserInfoViewModel userInfoViewModel)
         {
-            //TODO
         }
 
         private UserInfoViewModel GetUserInfoViewModel(User user)

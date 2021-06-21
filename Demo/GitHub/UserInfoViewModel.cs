@@ -1,5 +1,4 @@
-﻿using System;
-using Demo.BaseClasses;
+﻿using Demo.BaseClasses;
 
 namespace Demo.GitHub
 {

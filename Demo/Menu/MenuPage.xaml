@@ -7,29 +7,71 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="True"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#2196F3" >
+             BackgroundColor="{StaticResource LightBlue}">
 
-    <StackLayout>
+    <Grid VerticalOptions="FillAndExpand" RowDefinitions="*">
 
-        <Label Text="Aanstoot's Demo"
-               HorizontalTextAlignment="Center"
-               TextColor="White"
-               FontSize="36"/>
+        <Grid RowDefinitions="*,220,*"
+              ColumnDefinitions="*,300,*"
+              VerticalOptions="FillAndExpand"
+              ColumnSpacing="0"
+              RowSpacing="0"  >
 
-        <Label Text="Title"
-               FontSize="Title"
-               TextColor="White"
-               Padding="30,10,30,10"/>
+            <Label VerticalOptions="Center"
+                   HorizontalOptions="Start"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   Text="Aanstoot's Demo"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="42" />
 
-        <Label Text="Text..."
-               FontSize="16"
-               TextColor="White"
-               Padding="30,0,30,0"/>
+        </Grid>
 
-        <Button Text="GitHub User Search"
-                TextColor="White"
-                Command="{Binding GitHubUsersCommand}"/>
-         
-    </StackLayout>
+        <StackLayout Orientation="Vertical"
+                     Spacing="20"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     WidthRequest="300"
+                     Grid.Row="0">
+
+            <Grid WidthRequest="300"
+                  VerticalOptions="Center">
+
+                <BoxView CornerRadius="32"
+                         BackgroundColor="White"
+                         HeightRequest="64"
+                         HorizontalOptions="Fill">
+
+                    <BoxView.GestureRecognizers>
+
+                        <TapGestureRecognizer Command="{Binding GitHubUsersCommand}" />
+
+                    </BoxView.GestureRecognizers>
+
+                </BoxView>
+
+                <Label FontFamily="FA-S"
+                       Margin="20,20,10,10"
+                       FontSize="24"
+                       TextColor="{StaticResource LightBlue}"
+                       HorizontalOptions="Start"
+                       Text="{StaticResource IconSearch}"
+                       InputTransparent="True"/>
+
+                <Label Text="GitHub User Search"
+                       Margin="54,2,0,0"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource LightBlue}"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       InputTransparent="True" />
+
+            </Grid>
+
+        </StackLayout>
+
+    </Grid>
 
 </ContentPage>
