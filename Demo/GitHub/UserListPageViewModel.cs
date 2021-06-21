@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Demo.BaseClasses;
@@ -13,6 +14,8 @@ namespace Demo.GitHub
 
         private readonly IGitHubService gitHubService;
         private readonly IAlertService alertService;
+
+        private List<User> users;
 
         public ExtendedObservableCollection<UserInfoViewModel> Users { get; internal set; }
 
@@ -53,6 +56,7 @@ namespace Demo.GitHub
             set => SetValue(ref showLoadingSpinner, value);
         }
 
+        //TODO: Initiate navigation to the selected user (ShowUser below)
         private UserInfoViewModel selectedUser;
         public UserInfoViewModel SelectedUser
         {
@@ -68,7 +72,7 @@ namespace Demo.GitHub
 
             try
             {
-                var users = await gitHubService.SearchUsersAsync(query);
+                users = (await gitHubService.SearchUsersAsync(query)).ToList(); 
                 Users.AddRange(users.Select(GetUserInfoViewModel));
             }
             catch
@@ -92,7 +96,7 @@ namespace Demo.GitHub
             Users = new ExtendedObservableCollection<UserInfoViewModel>();
         }
 
-        //TODO: Show detailed page for a user
+        //TODO: Navigate to UserDetailsPage and use users list to pass correct item with all info 
         private async Task ShowUser(UserInfoViewModel userInfoViewModel)
         {
         }
