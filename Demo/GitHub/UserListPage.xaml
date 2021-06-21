@@ -4,11 +4,14 @@
              x:Class="Demo.GitHub.UserListPage"
              xmlns:vm="clr-namespace:Demo.GitHub"
              x:DataType="vm:UserListPageViewModel"
-             Title="GitHub Users">
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+	         xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             BackgroundColor="#f5f6f8"
+             Title="Search for GitHub Users">
 
     <StackLayout>
-
-        <Label Text="Search for GitHub users" />
 
         <SearchBar x:Name="searchBar"
                    Text="{Binding SearchText}"
@@ -19,21 +22,90 @@
         <Grid>
 
             <CollectionView ItemsSource="{Binding Users}"
-                BackgroundColor="Transparent" >
-                        
+                            SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
+                            ItemSizingStrategy="MeasureAllItems"
+                            BackgroundColor="Transparent"
+                            SelectionMode="Single" >
+
+                <CollectionView.ItemsLayout>
+
+                    <LinearItemsLayout ItemSpacing="8"
+                                       Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+
                 <CollectionView.EmptyView>
-                    <StackLayout VerticalOptions="CenterAndExpand">
-                        <Label HorizontalOptions="Fill"
-                               HorizontalTextAlignment="Center"
-                               VerticalOptions="CenterAndExpand"
-                               Text="{Binding NoResultText}" />
-                    </StackLayout>
+
+                    <Grid>
+
+                        <StackLayout VerticalOptions="CenterAndExpand">
+
+                            <Label Margin="10,0,10,0"
+                                   FontAttributes="Bold"
+                                   FontSize="17"
+                                   HorizontalOptions="CenterAndExpand"
+                                   Text="{Binding NoResultHeaderText}"
+                                   TextColor="#262626" />
+
+                            <Label Margin="20,10,20,0"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"
+                                   Text="{Binding NoResultText}"
+                                   TextColor="#262626" />
+
+                        </StackLayout>
+
+                    </Grid>
+
                 </CollectionView.EmptyView>
 
                 <CollectionView.ItemTemplate>
+
                     <DataTemplate x:DataType="vm:UserInfoViewModel">
-                        <Label Text="{Binding Login}" />
+
+
+                            <Grid RowDefinitions="90"
+                                  ColumnDefinitions="90, *"
+                                  BackgroundColor="White">
+
+                                <ffimageloading:CachedImage Grid.Column="0"
+                                                            HorizontalOptions="Center"
+                                                            VerticalOptions="Center"
+                                                            WidthRequest="60"
+                                                            HeightRequest="60"
+                                                            DownsampleToViewSize="true"
+                                                            Source = "{Binding AvatarUrl}">
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <fftransformations:CircleTransformation />
+                                    </ffimageloading:CachedImage.Transformations>
+		                        </ffimageloading:CachedImage>
+
+                                <StackLayout Grid.Column="1"
+                                             Margin="0,10,0,0">
+
+                                    <Label FontAttributes="Bold"
+                                           FontSize="17"
+                                           VerticalOptions="Start"
+                                           TextColor="#262626"
+                                           Text="{Binding Login}" />
+
+                                    <Label FontSize="14"
+                                           VerticalOptions="Start"
+                                           TextColor="#262626"
+                                           Text="{Binding Type}" />
+
+                                    <Label FontSize="14"
+                                           VerticalOptions="Start"
+                                           TextColor="#262626"
+                                           Text="{Binding ScoreText}" />
+
+                                </StackLayout>
+
+
+                            </Grid>
+
                     </DataTemplate>
+
                 </CollectionView.ItemTemplate>
 
             </CollectionView>

@@ -3,6 +3,7 @@ using Demo.BaseClasses;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Demo.GitHub;
+using Demo.Services;
 
 namespace Demo.Menu
 {
@@ -10,11 +11,11 @@ namespace Demo.Menu
     {
         public ICommand GitHubUsersCommand { get; }
 
-        public MenuPageViewModel(IGitHubService gitHubService)
+        public MenuPageViewModel(IAlertService alertService, IGitHubService gitHubService)
         {
             GitHubUsersCommand = new Command(async () =>
             {
-                var userListPageViewModel = new UserListPageViewModel(gitHubService);
+                var userListPageViewModel = new UserListPageViewModel(alertService, gitHubService);
 
                 var userListPage = new UserListPage();
 

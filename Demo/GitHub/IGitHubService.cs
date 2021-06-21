@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Demo.GitHub
 {
     public interface IGitHubService
     {
-        IEnumerable<User> GetUsers();
-        IEnumerable<User> GetUsers(string query);
+        Task<IEnumerable<User>> SearchUsersAsync(string searchString);
     }
 }
