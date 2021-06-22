@@ -4,6 +4,8 @@ namespace Demo.GitHub
 {
     public class UserInfoViewModel : NotifyPropertyChanged
     {
+        public int Id { get; set; }
+
         public string Login { get; set; }
 
         public string AvatarUrl { get; set; }

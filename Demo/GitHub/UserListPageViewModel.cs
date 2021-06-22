@@ -56,14 +56,6 @@ namespace Demo.GitHub
             set => SetValue(ref showLoadingSpinner, value);
         }
 
-        //TODO: Initiate navigation to the selected user (ShowUser below)
-        private UserInfoViewModel selectedUser;
-        public UserInfoViewModel SelectedUser
-        {
-            get => selectedUser;
-            set => SetValue(ref selectedUser, value);
-        }
-
         public ICommand PerformSearch => new Command<string>(async (string query) =>
         {
             ShowLoadingSpinner = true;
@@ -89,6 +81,11 @@ namespace Demo.GitHub
             }
         });
 
+        public ICommand NavToDetailCommand => new Command<UserInfoViewModel>(async (UserInfoViewModel userInfoViewModel) =>
+        {
+            await ShowUser(userInfoViewModel);
+        });
+
         public UserListPageViewModel(IAlertService alertService, IGitHubService gitHubService)
         {
             this.gitHubService = gitHubService;
@@ -96,15 +93,22 @@ namespace Demo.GitHub
             Users = new ExtendedObservableCollection<UserInfoViewModel>();
         }
 
-        //TODO: Navigate to UserDetailsPage and use users list to pass correct item with all info 
         private async Task ShowUser(UserInfoViewModel userInfoViewModel)
         {
+            var userDetailsPageViewModel = new UserDetailsPageViewModel(users.FirstOrDefault(u => u.Id == userInfoViewModel.Id));
+
+            var userDetailsPage = new UserDetailsPage();
+
+            userDetailsPage.BindingContext = userDetailsPageViewModel;
+
+            await Application.Current.MainPage.Navigation.PushAsync(userDetailsPage);
         }
 
         private UserInfoViewModel GetUserInfoViewModel(User user)
         {
             return new UserInfoViewModel
             {
+                Id = user.Id,
                 Login = user.Login,
                 AvatarUrl = user.AvatarUrl,
                 Score = user.Score,

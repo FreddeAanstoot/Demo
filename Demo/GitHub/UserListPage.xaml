@@ -22,7 +22,6 @@
         <Grid>
 
             <CollectionView ItemsSource="{Binding Users}"
-                            SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
                             ItemSizingStrategy="MeasureAllItems"
                             BackgroundColor="Transparent"
                             SelectionMode="Single" >
@@ -63,7 +62,6 @@
 
                     <DataTemplate x:DataType="vm:UserInfoViewModel">
 
-
                             <Grid RowDefinitions="90"
                                   ColumnDefinitions="90, *"
                                   BackgroundColor="White">
@@ -101,6 +99,12 @@
 
                                 </StackLayout>
 
+                                <Grid.GestureRecognizers>
+
+                                    <TapGestureRecognizer Command="{Binding NavToDetailCommand, Source={RelativeSource AncestorType={x:Type vm:UserListPageViewModel}}}"
+                                                          CommandParameter="{Binding .}" />
+
+                                </Grid.GestureRecognizers>
 
                             </Grid>
 
